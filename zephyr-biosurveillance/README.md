@@ -58,7 +58,7 @@ Rscript R/20_confidence_calls.R       # -> taxonomy_calls.tsv + heatmap (uses co
 Rscript R/40_kmer_clustering.R        # -> cluster_* tables + UMAP plots
 
 # 5. Memo
-#   - memo/memo-core.md     : concise core memo (Parts 2-3) -> paste into the Google Doc.
+#   - memo/memo-core.md     : final memo (Parts 1-3) as submitted to the Google Doc.
 #   - memo/memo-extended.Rmd: extended memo (same narrative with all figures + full tables).
 Rscript -e 'rmarkdown::render("memo/memo-extended.Rmd")'                                  # -> memo/memo-extended.html
 Rscript -e 'rmarkdown::render("memo/memo-extended.Rmd", output_format = "word_document")'  # -> memo/memo-extended.docx
@@ -120,7 +120,7 @@ reproduce full-data results, clear `data/raw/` and re-run the pipeline without `
 | `results/tables/coverage_summary.tsv` | Breadth (%) and mean depth per reference |
 | `results/tables/cluster_vs_taxonomy.tsv`, `cluster_metrics.tsv` | Cluster/taxonomy crosstab + ARI |
 | `results/figures/*.png` | Taxonomy heatmap, coverage plots, k-mer UMAPs |
-| `memo/memo-core.md` | Concise core memo (Parts 2-3), copy-paste into the Google Doc |
+| `memo/memo-core.md` | Final memo (Parts 1-3) as submitted to the Google Doc |
 | `memo/memo-extended.html`, `memo/memo-extended.docx` | Extended memo: same narrative with all figures + full tables |
 
 ## Confidence criteria (heuristic, tunable)
@@ -153,9 +153,8 @@ same viral family are flagged (`ambiguity_flag`) for possible cross-mapping.
 - `R/10` reads the 12 fixed PAF columns explicitly (`cut -f1-12`) so it does not silently drop
   alignments when minimap2 emits a variable number of optional tag columns.
 
-**Submission:** paste the concise core memo `memo/memo-core.md` into the Google Doc and format it
-there alongside Part 1 (the conceptual question) and the time taken. Insert the two essential figures
-it references (taxonomy heatmap, k-mer UMAP) from `results/figures/`. For the fuller version with
-every figure and the full per-pool tables, render the extended memo (`memo/memo-extended.Rmd` ->
-`output_format = "word_document"`), upload `memo/memo-extended.docx` to Drive, and "Open with Google
-Docs" (browser copy-paste tends to drop the figures).
+**Submission:** the final memo (Parts 1-3) is `memo/memo-core.md`, mirroring the submitted Google Doc;
+the figures it references (taxonomy heatmap, k-mer UMAP) are in `results/figures/`. For the fuller
+version with every figure and the full per-pool tables, render the extended memo
+(`memo/memo-extended.Rmd` -> `output_format = "word_document"`), upload `memo/memo-extended.docx` to
+Drive, and "Open with Google Docs" (browser copy-paste tends to drop the figures).

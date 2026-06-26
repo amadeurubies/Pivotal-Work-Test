@@ -21,10 +21,10 @@ read_or_null <- function(p) if (file.exists(p)) fread(p) else NULL
 ```
 
 <!--
-This is the EXTENDED memo (all figures + full tables). The concise core memo for the Google
-Doc is memo/memo-core.md. To share this version, render to Word (`output_format = "word_document"`),
-upload the .docx to Google Drive, and "Open with Google Docs" so figures convert cleanly
-(browser copy-paste tends to drop them). Part 1 (the conceptual question) is added in the Doc.
+This is the EXTENDED memo (all figures + full tables). The final memo (Parts 1-3) as submitted to
+the Google Doc is memo/memo-core.md. To share this version, render to Word
+(`output_format = "word_document"`), upload the .docx to Google Drive, and "Open with Google Docs"
+so figures convert cleanly (browser copy-paste tends to drop them).
 -->
 
 ## 1. Objective and data
