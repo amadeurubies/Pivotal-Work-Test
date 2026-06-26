@@ -1,0 +1,21 @@
+---
+description: Testing and verification expectations for code changes
+globs: **/*.{ts,tsx,js,jsx,py,go,rs,java,kt,swift,rb,php,cs}
+alwaysApply: false
+---
+
+# Testing and verification
+
+- Look for existing tests before adding new ones.
+- Add or update tests for changed behaviour, bug fixes, and edge cases.
+- Prefer focused tests close to the changed code over broad end-to-end tests unless the change crosses system boundaries.
+- Include at least one regression test for bug fixes when practical.
+- Run the narrowest relevant test first, then broader checks if available.
+- Do not weaken, delete, or skip tests to make the suite pass unless the task explicitly asks for test maintenance.
+- If a test is flaky or impossible to run locally, document the reason and what validation was performed instead.
+
+Common validation commands to discover from the repo:
+- package scripts in package.json
+- Makefile targets
+- CI workflows under .github/workflows
+- project-specific test, typecheck, lint, build, and format commands

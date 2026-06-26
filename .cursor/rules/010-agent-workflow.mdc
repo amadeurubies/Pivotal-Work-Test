@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+---
+
+# Agent workflow
+
+Before making changes:
+- Restate the task in one sentence.
+- Identify the relevant files, commands, and constraints.
+- For non-trivial changes, make a short implementation plan before editing.
+
+While making changes:
+- Keep diffs focused on the requested task.
+- Reuse existing utilities, types, helpers, and patterns before adding new ones.
+- Do not perform drive-by refactors.
+- Do not silently ignore failing tests, type errors, lint errors, or runtime errors.
+
+After making changes:
+- Summarise what changed.
+- List validation performed, including exact commands run.
+- If validation was not run, say why.
+- Call out risks, assumptions, and follow-up work.

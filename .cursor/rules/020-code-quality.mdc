@@ -1,0 +1,17 @@
+---
+description: Code quality standards for source changes
+globs: **/*.{ts,tsx,js,jsx,py,go,rs,java,kt,swift,rb,php,cs,cpp,c,h}
+alwaysApply: false
+---
+
+# Code quality
+
+- Prefer clear, typed, boring code.
+- Make invalid states hard to represent.
+- Handle errors explicitly at system boundaries: IO, network calls, database calls, parsing, authentication, permissions, and user input.
+- Avoid catching errors only to suppress them.
+- Keep functions small enough to test directly.
+- Prefer composition over inheritance unless the existing codebase already uses inheritance for the relevant pattern.
+- Avoid unnecessary abstractions. Add an abstraction only after there are at least two concrete uses or a clear stability boundary.
+- Do not add comments that merely repeat the code. Add comments only for non-obvious business logic, tradeoffs, workarounds, or external constraints.
+- Prefer existing project conventions over generic best practices.

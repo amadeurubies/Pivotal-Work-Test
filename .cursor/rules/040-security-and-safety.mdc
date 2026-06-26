@@ -1,0 +1,17 @@
+---
+description: Security-sensitive coding rules
+globs: **/*.{ts,tsx,js,jsx,py,go,rs,java,kt,rb,php,cs,yml,yaml,json,toml,env,sh}
+alwaysApply: false
+---
+
+# Security and safety
+
+- Never commit secrets, API keys, tokens, passwords, certificates, private keys, or production credentials.
+- Treat all user input, external API responses, webhooks, files, environment variables, and database contents as untrusted.
+- Validate and normalise input at system boundaries.
+- Use parameterised queries or the repository’s existing safe database abstraction. Do not construct SQL with string concatenation.
+- Preserve authentication, authorisation, CSRF, CORS, rate limiting, and audit logging behaviour unless explicitly asked to change it.
+- For webhooks, verify signatures before processing payloads.
+- Avoid logging secrets, tokens, full request bodies, full database records, or unnecessary personal data.
+- When returning data to clients, select only required fields.
+- If a change touches auth, permissions, payments, cryptography, data deletion, migrations, or production config, explicitly flag it as security-sensitive in the final summary.

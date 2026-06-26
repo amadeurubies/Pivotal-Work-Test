@@ -1,0 +1,14 @@
+---
+alwaysApply: true
+---
+
+# Project operating principles
+
+- Treat existing code as the source of truth. Before changing behaviour, inspect the relevant files and nearby tests.
+- Prefer small, local, reversible changes over broad rewrites.
+- Do not introduce new architecture, dependencies, services, state management, or build tools without explaining why the existing approach is insufficient.
+- Preserve public APIs and user-visible behaviour unless the task explicitly asks to change them.
+- Follow the repository’s existing naming, formatting, folder structure, and error-handling conventions.
+- Do not edit generated files, vendored code, lockfiles, migrations, or environment/config files unless the task explicitly requires it.
+- Do not add secrets, credentials, tokens, private keys, or real personal data.
+- When uncertain, state the uncertainty and choose the least invasive reasonable path.
