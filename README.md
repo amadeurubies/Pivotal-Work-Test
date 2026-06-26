@@ -1,7 +1,7 @@
-# Pivotal Biodefense Work Task — Metagenomic biosurveillance
+# Metagenomic biosurveillance
 
-Submission for the Pivotal Biodefense work task (metagenomic biosurveillance of
-SecureBio Zephyr pooled nasal-swab viral reads).
+Metagenomic biosurveillance of SecureBio Zephyr pooled nasal-swab viral reads
+(ONT long reads): taxonomy + coverage, and k-mer clustering vs taxonomy.
 
 - **Code and analysis:** [`zephyr-biosurveillance/`](zephyr-biosurveillance/README.md)
   — see that README for the environment, run order, and outputs.

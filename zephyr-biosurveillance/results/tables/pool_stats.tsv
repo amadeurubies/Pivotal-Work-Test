@@ -1,16 +1,16 @@
 file	format	type	num_seqs	sum_len	min_len	avg_len	max_len	Q1	Q2	Q3	sum_gap	N50	N50_num	Q20(%)	Q30(%)	AvgQual	GC(%)
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool01.fasta	FASTA	DNA	100000	319875451	356	3198.8	11912	2664.0	3180.5	3652.0	0	3392	2201	0.00	0.00	0.00	39.90
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool02.fasta	FASTA	DNA	100000	341147726	119	3411.5	14308	2592.0	3248.0	4075.0	0	3652	3522	0.00	0.00	0.00	37.79
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool03.fasta	FASTA	DNA	100000	279405671	131	2794.1	10546	2211.0	2776.0	3315.0	0	3020	2587	0.00	0.00	0.00	38.69
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool04.fasta	FASTA	DNA	100000	298980653	78	2989.8	6961	2594.0	2944.0	3187.0	0	3086	822	0.00	0.00	0.00	38.02
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool05.fasta	FASTA	DNA	100000	332835778	178	3328.4	9614	2688.0	3271.0	3959.0	0	3548	1813	0.00	0.00	0.00	39.39
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool06.fasta	FASTA	DNA	100000	306927090	123	3069.3	14226	2403.0	2991.0	3580.0	0	3189	3164	0.00	0.00	0.00	38.11
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool07.fasta	FASTA	DNA	100000	362158511	179	3621.6	9521	2898.0	3983.0	4671.0	0	3994	701	0.00	0.00	0.00	40.73
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool08.fasta	FASTA	DNA	100000	263881407	155	2638.8	10882	2049.0	2477.0	3106.0	0	2785	2639	0.00	0.00	0.00	38.04
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool09.fasta	FASTA	DNA	100000	311028131	151	3110.3	12610	2407.0	3034.0	3655.0	0	3253	3090	0.00	0.00	0.00	37.87
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool10.fasta	FASTA	DNA	100000	359395644	228	3594.0	12985	2936.0	3497.0	4213.0	0	3809	2672	0.00	0.00	0.00	40.98
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool11.fasta	FASTA	DNA	100000	263078637	114	2630.8	6321	2280.0	2696.0	2928.0	0	2721	1362	0.00	0.00	0.00	34.63
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool12.fasta	FASTA	DNA	100000	351412454	149	3514.1	10802	2687.5	3495.0	4312.0	0	3845	2619	0.00	0.00	0.00	43.14
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool13.fasta	FASTA	DNA	100000	348951193	194	3489.5	10662	2775.0	3330.0	4208.0	0	3884	1636	0.00	0.00	0.00	42.72
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool14.fasta	FASTA	DNA	100000	303731068	147	3037.3	13243	2462.0	2958.0	3553.0	0	3153	2542	0.00	0.00	0.00	39.80
-/mnt/c/Users/Ami/Documents/Pivotal Work Test/zephyr-biosurveillance/data/raw/pool15.fasta	FASTA	DNA	76508	250070881	101	3268.6	11847	2451.0	3127.0	3943.0	0	3606	2334	0.00	0.00	0.00	42.41
+data/raw/pool01.fasta	FASTA	DNA	100000	319875451	356	3198.8	11912	2664.0	3180.5	3652.0	0	3392	2201	0.00	0.00	0.00	39.90
+data/raw/pool02.fasta	FASTA	DNA	100000	341147726	119	3411.5	14308	2592.0	3248.0	4075.0	0	3652	3522	0.00	0.00	0.00	37.79
+data/raw/pool03.fasta	FASTA	DNA	100000	279405671	131	2794.1	10546	2211.0	2776.0	3315.0	0	3020	2587	0.00	0.00	0.00	38.69
+data/raw/pool04.fasta	FASTA	DNA	100000	298980653	78	2989.8	6961	2594.0	2944.0	3187.0	0	3086	822	0.00	0.00	0.00	38.02
+data/raw/pool05.fasta	FASTA	DNA	100000	332835778	178	3328.4	9614	2688.0	3271.0	3959.0	0	3548	1813	0.00	0.00	0.00	39.39
+data/raw/pool06.fasta	FASTA	DNA	100000	306927090	123	3069.3	14226	2403.0	2991.0	3580.0	0	3189	3164	0.00	0.00	0.00	38.11
+data/raw/pool07.fasta	FASTA	DNA	100000	362158511	179	3621.6	9521	2898.0	3983.0	4671.0	0	3994	701	0.00	0.00	0.00	40.73
+data/raw/pool08.fasta	FASTA	DNA	100000	263881407	155	2638.8	10882	2049.0	2477.0	3106.0	0	2785	2639	0.00	0.00	0.00	38.04
+data/raw/pool09.fasta	FASTA	DNA	100000	311028131	151	3110.3	12610	2407.0	3034.0	3655.0	0	3253	3090	0.00	0.00	0.00	37.87
+data/raw/pool10.fasta	FASTA	DNA	100000	359395644	228	3594.0	12985	2936.0	3497.0	4213.0	0	3809	2672	0.00	0.00	0.00	40.98
+data/raw/pool11.fasta	FASTA	DNA	100000	263078637	114	2630.8	6321	2280.0	2696.0	2928.0	0	2721	1362	0.00	0.00	0.00	34.63
+data/raw/pool12.fasta	FASTA	DNA	100000	351412454	149	3514.1	10802	2687.5	3495.0	4312.0	0	3845	2619	0.00	0.00	0.00	43.14
+data/raw/pool13.fasta	FASTA	DNA	100000	348951193	194	3489.5	10662	2775.0	3330.0	4208.0	0	3884	1636	0.00	0.00	0.00	42.72
+data/raw/pool14.fasta	FASTA	DNA	100000	303731068	147	3037.3	13243	2462.0	2958.0	3553.0	0	3153	2542	0.00	0.00	0.00	39.80
+data/raw/pool15.fasta	FASTA	DNA	76508	250070881	101	3268.6	11847	2451.0	3127.0	3943.0	0	3606	2334	0.00	0.00	0.00	42.41
