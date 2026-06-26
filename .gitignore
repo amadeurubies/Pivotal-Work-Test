@@ -1,0 +1,7 @@
+# Assignment brief (the task description is not part of the submission)
+*.docx
+WORK-TASK.md
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db

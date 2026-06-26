@@ -1,0 +1,28 @@
+name: zephyr
+# One reproducible environment for both the shell tools and the R analysis.
+# Create with:  mamba env create -f environment.yml   (or: conda env create -f environment.yml)
+# Then:         conda activate zephyr
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  # --- shell / bioinformatics tools ---
+  - python=3.11
+  - seqkit=2.8.2
+  - minimap2=2.28
+  - samtools=1.20
+  - bedtools=2.31.1
+  - blast=2.16.0
+  - csvtk=0.31.0
+  - entrez-direct=22.4        # efetch, for fetching reference genomes
+  - curl
+  # --- R + analysis packages ---
+  - r-base=4.3
+  - r-tidyverse
+  - r-data.table
+  - r-dbscan
+  - r-uwot
+  - r-patchwork
+  - r-rmarkdown
+  - r-knitr
+  - bioconductor-biostrings

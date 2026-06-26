@@ -1,0 +1,4 @@
+method	k_or_eps	n_labeled_reads	adjusted_rand_index
+kmeans	8	3616	0.400693830868726
+hclust	8	3616	0.416860331624649
+dbscan	eps=1.240	3616	0.0526722127456248

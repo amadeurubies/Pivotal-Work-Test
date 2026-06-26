@@ -1,0 +1,16 @@
+pool_id	date	site	pool_size	n_reads	url
+pool01	2026-03-21	Boston (Park/Tremont St)	70	2211357	https://data.securebio.org/zephyr/respiratory-reads/260321-BC-NAS-P1.respiratory.fasta.gz
+pool02	2025-12-19	MBTA (Harvard Station)	80	1133816	https://data.securebio.org/zephyr/respiratory-reads/251219-MBTA_Ha-NAS-P2.respiratory.fasta.gz
+pool03	2025-12-08	Boston (Downtown Crossing)	52	979936	https://data.securebio.org/zephyr/respiratory-reads/251208-BoDT-NAS-P2.respiratory.fasta.gz
+pool04	2026-04-14	Copley Square	60	870208	https://data.securebio.org/zephyr/respiratory-reads/260414-Copl-NAS-P1.respiratory.fasta.gz
+pool05	2026-04-10	Copley Square	60	856354	https://data.securebio.org/zephyr/respiratory-reads/260410-Copl-NAS-P2.respiratory.fasta.gz
+pool06	2026-02-25	MBTA (Harvard Station)	51	807332	https://data.securebio.org/zephyr/respiratory-reads/260225-MBTA_Ha-NAS-P1.respiratory.fasta.gz
+pool07	2026-04-12	Boston (Park/Tremont St)	80	742564	https://data.securebio.org/zephyr/respiratory-reads/260412-BC-NAS-P2.respiratory.fasta.gz
+pool08	2025-11-26	Copley Square	55	666663	https://data.securebio.org/zephyr/respiratory-reads/251126-Copl-NAS-P1.respiratory.fasta.gz
+pool09	2026-03-10	Boston (Downtown Crossing)	80	612436	https://data.securebio.org/zephyr/respiratory-reads/260310-BoDT-NAS-P1.respiratory.fasta.gz
+pool10	2026-05-29	Boston (Park/Tremont St)	70	539772	https://data.securebio.org/zephyr/respiratory-reads/260529-BC-NAS-P2.respiratory.fasta.gz
+pool11	2026-05-09	Other/unknown location	90	458010	https://data.securebio.org/zephyr/respiratory-reads/260509-Other_fs-NAS-P1.respiratory.fasta.gz
+pool12	2026-05-21	MBTA (Harvard Station)	53	323775	https://data.securebio.org/zephyr/respiratory-reads/260521-MBTA_Ha-NAS-P2.respiratory.fasta.gz
+pool13	2026-03-16	South Station	35	299930	https://data.securebio.org/zephyr/respiratory-reads/260316-SoS-NAS-P2.respiratory.fasta.gz
+pool14	2026-06-08	Copley Square	90	181437	https://data.securebio.org/zephyr/respiratory-reads/260608-Copl-NAS-P1.respiratory.fasta.gz
+pool15	2026-05-26	MBTA (Davis Square)	90	76508	https://data.securebio.org/zephyr/respiratory-reads/260526-MBTA_Da-NAS-P1.respiratory.fasta.gz
