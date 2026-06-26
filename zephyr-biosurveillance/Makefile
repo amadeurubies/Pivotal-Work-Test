@@ -35,9 +35,9 @@ recovery: taxonomy
 	Rscript R/15_panel_recovery.R
 
 memo:
-	Rscript -e 'rmarkdown::render("memo/memo.Rmd")'
-	Rscript -e 'rmarkdown::render("memo/memo.Rmd", output_format = "word_document")'
+	Rscript -e 'rmarkdown::render("memo/memo-extended.Rmd")'
+	Rscript -e 'rmarkdown::render("memo/memo-extended.Rmd", output_format = "word_document")'
 
 clean:
 	rm -rf results/paf/* results/bam/* results/coverage/* \
-	       results/tables/* results/figures/* memo/memo.html memo/memo.docx
+	       results/tables/* results/figures/* memo/memo-extended.html memo/memo-extended.docx

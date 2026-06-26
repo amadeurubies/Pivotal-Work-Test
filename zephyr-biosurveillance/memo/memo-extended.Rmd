@@ -1,0 +1,171 @@
+---
+title: "Zephyr metagenomic biosurveillance: taxonomy, coverage, and read clustering"
+author: "Amadeu Rubiés"
+date: "`r format(Sys.Date())`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    pandoc_args: ["--resource-path", ".."]
+  word_document:
+    toc: false
+    pandoc_args: ["--resource-path", ".."]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+suppressPackageStartupMessages({ library(data.table); library(knitr) })
+# Knit from the repo root so relative paths resolve.
+knitr::opts_knit$set(root.dir = normalizePath(".."))
+read_or_null <- function(p) if (file.exists(p)) fread(p) else NULL
+```
+
+<!--
+This is the EXTENDED memo (all figures + full tables). The concise core memo for the Google
+Doc is memo/memo-core.md. To share this version, render to Word (`output_format = "word_document"`),
+upload the .docx to Google Drive, and "Open with Google Docs" so figures convert cleanly
+(browser copy-paste tends to drop them). Part 1 (the conceptual question) is added in the Doc.
+-->
+
+## 1. Objective and data
+
+We analyse **`r {x <- read_or_null("data/metadata/pools.tsv"); if (is.null(x)) "N" else nrow(x)}` pooled nasal-swab pools** from SecureBio's Zephyr program
+(`https://data.securebio.org/zephyr`), each untargeted ONT metatranscriptomic sequencing.
+The public FASTA per pool holds **long reads already classified as vertebrate-infecting
+viruses** after human-read removal, so the task is **taxonomic confirmation and coverage
+assessment**, not de novo discovery. The questions, across >=10 pools: **what viruses are
+present and how confident are we**, and **what genome coverage** we see for common
+respiratory viruses. Abundance (read counts) reflects sequencing yield, not clinical
+prevalence, and cannot be attributed to individuals.
+
+## 2. Methods (brief)
+
+- **Read stats:** `seqkit stats`.
+- **Taxonomy:** `minimap2 -x map-ont` of each pool against a curated panel of respiratory-virus
+  RefSeq genomes; best hit per read; per-alignment identity = matches / block length.
+- **Coverage:** `samtools coverage` (breadth, mean depth) and `bedtools genomecov` (depth profiles).
+- **Confidence tiers (heuristic):** combine read support, median identity, and genome breadth
+  (Section 3). Same-family members co-called in a pool are flagged for possible cross-mapping.
+- **Track B clustering:** canonical tetranucleotide (k=4) frequencies per read -> PCA + UMAP ->
+  k-means / DBSCAN / hierarchical, compared to the minimap2 labels via the adjusted Rand index.
+
+All steps are R-first; shell tools run in a single conda environment.
+
+## 3. Part 2 - Viruses present, confidence, and coverage
+
+The heatmap below summarises every call (reads = colour, confidence = tile border); the table
+lists the high-confidence calls. Coverage depth across the genome is shown for the best-covered
+pool/virus pairs.
+
+```{r heatmap, out.width="85%", fig.align="center"}
+if (file.exists("results/figures/taxonomy_heatmap.png")) {
+  knitr::include_graphics("results/figures/taxonomy_heatmap.png")
+}
+```
+
+```{r calls}
+calls <- read_or_null("results/tables/taxonomy_calls.tsv")
+if (!is.null(calls)) {
+  hi <- calls[confidence == "high"][order(-n_reads)]
+  kable(hi[, .(pool_id, virus, n_reads, median_identity, breadth_pct, mean_depth)],
+        digits = c(0, 0, 0, 3, 1, 1),
+        caption = "High-confidence calls (>=50 reads, identity >=0.90, breadth >=25%). Full per-pool table: results/tables/taxonomy_calls.tsv.")
+} else {
+  cat("_Run the pipeline to populate results/tables/taxonomy_calls.tsv._")
+}
+```
+
+```{r coverage, out.width="85%", fig.align="center"}
+if (file.exists("results/figures/coverage_profiles.png")) {
+  knitr::include_graphics("results/figures/coverage_profiles.png")
+}
+```
+
+*Interpretation.* **Seasonal human coronaviruses are the clearest signal.** HCoV-229E
+dominates pools 02, 04, 06, 08 and 09 (~78k-100k reads each, 75-100% breadth, ~8,000-12,000x
+depth) and HCoV-NL63 dominates pool11 (~100k reads, 88% breadth); HCoV-HKU1 reaches a
+near-complete genome in pool03 (1,138 reads, 99.7% breadth). At ONT-typical identity
+(~0.97-0.99) these are unambiguous, near-complete genomes and most of the **high**-confidence
+calls.
+
+**Rhinovirus is ubiquitous but scores "low" because of reference divergence, not absence.**
+Rhinovirus A/B/C appear in nearly every pool, often as the most abundant taxon (pool10 RV-A
+96,854 reads at 99.7% breadth; pool14 RV-A at 100% breadth), yet almost always fall to **low**
+because median identity is only ~0.69-0.78, below the 0.80/0.90 gates. Rhinovirus is extremely
+diverse (>160 genotypes) and the single RV RefSeq is divergent from circulating strains, so
+reads cover the whole ~7 kb genome deeply while mapping at low identity. Here breadth and depth,
+not identity, are the reliable evidence - the clearest case where identity alone should not gate
+a call.
+
+**Sporadic co-detections fill the medium/low tiers.** SARS-CoV-2 appears in several pools at low
+read counts and narrow breadth, with one solid call in pool08 (124 reads, 41% breadth, 0.99
+identity); hMPV is **high** in pool15 (612 reads, 70% breadth) and lower-confidence elsewhere;
+influenza A/B appear at low-to-medium support (segmented, so reported breadth is the best single
+segment). Where several members of one family co-occur, the dominant member is clear from read
+share and breadth, while minor co-members (a few reads, low breadth) are flagged
+(`ambiguity_flag`) as likely cross-mapping rather than silently resolved.
+
+**Coverage shape and panel recovery support the calls.** Coronavirus depth profiles show a 5'
+peak and a pronounced 3' rise (consistent with abundant subgenomic mRNAs), rhinovirus is deep
+and broad across ~7 kb with vertical dropouts at divergent sites, and low-read viruses give only
+patchy coverage - which the tiers correctly down-weight. The curated panel explains nearly all
+reads in CoV-dominated pools (>99% on-panel in pools 02/06/09/11) but far fewer where divergent
+rhinovirus or off-panel viruses prevail (pool13 36%, pool15 34%); these off-panel fractions
+(`results/tables/panel_recovery.tsv`) mark the panel boundary and are the natural targets for
+the optional BLAST spot-check.
+
+## 4. Part 3 (Track B) - k-mer embedding and clustering
+
+```{r cluster}
+metrics <- read_or_null("results/tables/cluster_metrics.tsv")
+if (!is.null(metrics)) {
+  kable(metrics, caption = "Cluster-vs-taxonomy concordance (adjusted Rand index).")
+}
+```
+
+```{r cluster-fig, out.width="49%", fig.show="hold"}
+for (f in c("results/figures/kmer_umap_taxonomy.png",
+            "results/figures/kmer_umap_clusters.png")) {
+  if (file.exists(f)) knitr::include_graphics(f)
+}
+```
+
+*Interpretation.* **K-mer composition recovers the broad taxonomy but over-splits each taxon.**
+On the 3,616 minimap2-labelled reads, agreement is moderate: adjusted Rand index 0.42
+(hierarchical), 0.40 (k-means, k=8), 0.05 (DBSCAN). The UMAP shows the expected structure -
+coronaviruses and picornaviruses in distinct regions, HCoV-NL63 as its own island, rhinovirus
+A/B/C together. Clusters are essentially single-taxon pure, so the modest ARI reflects
+**fragmentation, not mixing**: HCoV-229E spreads across clusters 1/4/5/8 and Rhinovirus-A across
+3/6/7, because reads from one genome differ in length and which sub-region (e.g. 5' vs
+3'/subgenomic) they cover. ARI penalises that splitting, so clustering here is confirmatory, not
+a replacement for alignment.
+
+Usefully, the clusters independently support the rhinovirus call: the `unassigned` reads do not
+form their own group but co-cluster with rhinovirus (cluster 7: 567 unassigned with 290 RV-C /
+212 RV-A / 26 RV-B), consistent with **divergent rhinovirus mapping below the identity gate**
+rather than a novel taxon. DBSCAN effectively fails (ARI 0.05), so the partition-based methods
+are the meaningful comparison.
+
+## 5. Limitations
+
+- Results use a **100,000-read-per-pool subsample** (pool15 already 76,508), so the calls and
+  relative patterns across pools are the intended output, not absolute genome completeness.
+- Reads are **pre-filtered to viruses** and **pooled**: confirmation, not discovery, and not
+  prevalence.
+- **Reference-panel bias:** anything off-panel is `unassigned`. A remote-BLAST spot-check of the
+  large off-panel fractions (pools 13/14/15, via `scripts/05_blast_confirm.sh ... offpanel`) is
+  implemented but too slow to finish in the time budget; identifying those reads is the clearest
+  follow-up.
+- **ONT error (~5-15%)** lowers identity, so tiers use relaxed thresholds and identity alone
+  never calls a virus; close relatives (seasonal coronaviruses, influenza segments) can
+  cross-map and are flagged.
+- **Segmented viruses:** per-virus breadth/depth in the calls table is the best single segment
+  (see `coverage_summary.tsv`); per-read k-mer clusters are noisy and partly track read
+  length/composition.
+
+## 6. Reproducibility
+
+Single conda environment (`environment.yml`); fixed run order in the README/`Makefile` (confidence
+calls run after coverage); seeds set for UMAP/k-means. Committed results use a 100k-read/pool
+subsample (`MAX_READS=100000 THREADS=12`, seed 11); the full-data run uses the same commands
+without `MAX_READS`. Confidence thresholds are tunable defaults, not ground truth.

@@ -57,11 +57,11 @@ Rscript R/20_confidence_calls.R       # -> taxonomy_calls.tsv + heatmap (uses co
 # 4. Track B: k-mer embedding + clustering
 Rscript R/40_kmer_clustering.R        # -> cluster_* tables + UMAP plots
 
-# 5. Memo (renders the ~1-page core for Parts 2-3)
-Rscript -e 'rmarkdown::render("memo/memo.Rmd")'                               # -> memo/memo.html
-# For the Google Doc, render Word, upload the .docx to Drive, and "Open with Google Docs"
-# (tables + figures convert cleanly); then add Part 1 and the time taken in the Doc.
-Rscript -e 'rmarkdown::render("memo/memo.Rmd", output_format = "word_document")'  # -> memo/memo.docx
+# 5. Memo
+#   - memo/memo-core.md     : concise core memo (Parts 2-3) -> paste into the Google Doc.
+#   - memo/memo-extended.Rmd: extended memo (same narrative with all figures + full tables).
+Rscript -e 'rmarkdown::render("memo/memo-extended.Rmd")'                                  # -> memo/memo-extended.html
+Rscript -e 'rmarkdown::render("memo/memo-extended.Rmd", output_format = "word_document")'  # -> memo/memo-extended.docx
 
 # Optional: remote BLAST spot-check of one pool
 bash scripts/05_blast_confirm.sh pool01 25
@@ -120,7 +120,8 @@ reproduce full-data results, clear `data/raw/` and re-run the pipeline without `
 | `results/tables/coverage_summary.tsv` | Breadth (%) and mean depth per reference |
 | `results/tables/cluster_vs_taxonomy.tsv`, `cluster_metrics.tsv` | Cluster/taxonomy crosstab + ARI |
 | `results/figures/*.png` | Taxonomy heatmap, coverage plots, k-mer UMAPs |
-| `memo/memo.html`, `memo/memo.docx` | ~1-page memo core (Parts 2-3); upload the `.docx` to Drive and "Open with Google Docs" |
+| `memo/memo-core.md` | Concise core memo (Parts 2-3), copy-paste into the Google Doc |
+| `memo/memo-extended.html`, `memo/memo-extended.docx` | Extended memo: same narrative with all figures + full tables |
 
 ## Confidence criteria (heuristic, tunable)
 
@@ -152,7 +153,9 @@ same viral family are flagged (`ambiguity_flag`) for possible cross-mapping.
 - `R/10` reads the 12 fixed PAF columns explicitly (`cut -f1-12`) so it does not silently drop
   alignments when minimap2 emits a variable number of optional tag columns.
 
-**Submission:** the memo renders a ~1-page core (Parts 2-3). For the Google Doc, render the
-Word output (`output_format = "word_document"`), upload `memo/memo.docx` to Google Drive, and
-"Open with Google Docs" so tables and figures convert cleanly (browser copy-paste tends to drop
-the figures). Part 1 (conceptual question) and the time taken are added in the Doc, not in this repo.
+**Submission:** paste the concise core memo `memo/memo-core.md` into the Google Doc and format it
+there alongside Part 1 (the conceptual question) and the time taken. Insert the two essential figures
+it references (taxonomy heatmap, k-mer UMAP) from `results/figures/`. For the fuller version with
+every figure and the full per-pool tables, render the extended memo (`memo/memo-extended.Rmd` ->
+`output_format = "word_document"`), upload `memo/memo-extended.docx` to Drive, and "Open with Google
+Docs" (browser copy-paste tends to drop the figures).
