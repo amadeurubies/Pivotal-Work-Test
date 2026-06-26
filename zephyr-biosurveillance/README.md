@@ -154,7 +154,7 @@ same viral family are flagged (`ambiguity_flag`) for possible cross-mapping.
   alignments when minimap2 emits a variable number of optional tag columns.
 
 **Submission:** the final memo (Parts 1-3) is `memo/memo-core.md`, mirroring the submitted Google Doc;
-the figures it references (taxonomy heatmap, k-mer UMAP) are in `results/figures/`. For the fuller
+the figure it references (k-mer UMAP) is in `results/figures/`. For the fuller
 version with every figure and the full per-pool tables, render the extended memo
 (`memo/memo-extended.Rmd` -> `output_format = "word_document"`), upload `memo/memo-extended.docx` to
 Drive, and "Open with Google Docs" (browser copy-paste tends to drop the figures).
